@@ -1,0 +1,4 @@
+WAIT 10.
+STAGE.
+WAIT 20.
+STAGE.

@@ -1,0 +1,107 @@
+CLEARSCREEN.
+SET x TO 0.
+LOCK alti TO ALT:RADAR.
+AG2 ON.
+AG3 OFF.
+
+
+WAIT UNTIL alti > 55001 or AG5 = AG2 or AG10 = AG2.
+LOCK STEERING TO UP.
+
+WAIT UNTIL alti > 70001 or AG5 = AG2 or AG10 = AG2.
+
+IF alti >= 70001 {
+}
+
+WAIT UNTIL alti > 80001 or AG5 = AG2 or AG10 = AG2.
+
+IF alti > 80001 {
+    RCS ON.
+
+    SET SHIP:CONTROL:STARBOARD TO -1.
+}
+
+IF AG5 = AG2  {
+    IF NOT(AG10 = AG2) {
+        AG10 ON.
+    }
+    SAS ON.
+
+    WAIT 0.78.
+    SAS OFF.
+    SET STEERING TO UP -R(0,+30,0).
+
+    WAIT 5.
+    SET STEERING TO UP.
+
+    IF alti > 100 {
+        WAIT 5.
+    }
+
+    IF alti < 1000 {
+    AG9 ON.
+    AG8 ON.
+
+    WAIT UNTIL alti < 11.1111111.
+    AG6 ON.
+    AG10 OFF.
+
+    WAIT 2.
+    }
+    ELSE {
+    
+    WAIT UNTIL alti < 2000.
+    AG9 ON.
+    AG8 ON.
+
+    WAIT UNTIL alti < 11.1111111.
+    AG6 ON.
+    AG10 OFF.
+
+    WAIT 2.
+    }
+}
+
+
+
+WAIT UNTIL alti > 70000.
+
+
+
+WAIT UNTIL alti > 85000.
+
+WAIT UNTIL alti < 80000.
+
+SET SHIP:CONTROL:STARBOARD TO 0.
+RCS OFF.
+
+
+WAIT UNTIL alti < 75001.
+LOCK STEERING TO (-1) * SHIP:VELOCITY:ORBIT..
+RCS ON.
+
+WAIT UNTIL alti < 70000.
+
+WAIT UNTIL alti < 43567.
+RCS OFF.
+
+WAIT UNTIL alti < 36000.
+LOCK STEERING TO (-1) * SHIP:VELOCITY:SURFACE.
+
+WAIT UNTIL alti < 11090.
+LOCK STEERING TO (-1) * SHIP:VELOCITY:SURFACE.
+AG9 ON.
+AG8 ON.
+
+WAIT UNTIL alti < 11.11111.
+AG6 ON.
+
+WAIT 2.
+
+WAIT UNTIL AG4 = AG2.
+
+PRINT (" shutting down ").
+SHUTDOWN.
+
+
+

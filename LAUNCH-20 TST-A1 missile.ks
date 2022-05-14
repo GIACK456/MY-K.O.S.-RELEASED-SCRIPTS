@@ -1,0 +1,11 @@
+
+
+WAIT UNTIL mass < 5.
+
+WAIT 1.
+
+LOCK STEERING TO TARGET.
+
+WAIT 3.
+
+STAGE.
